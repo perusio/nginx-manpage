@@ -1,0 +1,112 @@
+nginx -- HTTP and reverse proxy server, mail proxy server
+=========================================================
+
+## SYNOPSIS
+
+`nginx` [ options ]
+
+ options: [ -g directives ] [ -? | -h ] [ -p prefix ] [ -s signal ] [ -t ] [ -v ] [ -V ]
+
+## DESCRIPTION
+
+nginx (pronounced "engine x") is an HTTP server that also functions as
+an HTTP reverse proxy and/or a mail proxy. nginx is known for is high
+performance, stability, rich feature set, simple configuration, and
+low resource consumption.
+
+## OPTIONS
+
+ `-?,-h ` Short help.
+ 
+ `-c file`  Use an alternative configuration file.
+
+ `-g directives` Set global configuration directives.  See EXAMPLES for details.
+
+ `-p prefix` Set prefix path.  Default value is `/usr`.
+
+  `-q` Suppress non-error messages during configuration testing.
+
+  `-s signal` Send a signal to the master process. The signal can be
+  one of: `stop`, `quit`, `reopen`, `reload`.  The following table shows the corresponding system signals.
+
+                    + `stop`    SIGTERM
+                    + `quit`    SIGQUIT
+                    + `reopen`  SIGUSR1
+                    + `reload`  SIGHUP
+
+  `-t` Don't run, just test the configuration file.  The nginx checks
+  configuration for correct syntax and then tries to open files
+  referred in configuration.
+
+  `-v` Print nginx version.
+
+  `-V` Print nginx version, compiler version and the configure script parameters.
+
+## SIGNALS
+ 
+Nginx master process can handle the following signals.
+
+ `SIGINT`, `SIGTERM`  Shut down promptly.
+ `SIGHUP`   Reload the configuration, launch new worker process(es) using this new configuration, 
+            while gracefully shutting down the old worker processes
+ `SIGQUIT`  Shut down gracefully.
+ `SIGUSR1`  Reopen log files.
+ `SIGUSR2`  Upgrade nginx executable on the fly.
+ `SIGWINCH` Gracefully shutdown all worker processes.
+
+  Usually there's no need to explicitly control worker processes,
+  nevertheless you can send them some signals:
+
+ `SIGTERM` Shut down worker processes promptly.
+ `SIGQUIT` Shut down worker processes gracefully.
+ `SIGUSR1` Reopen log files.
+
+## DEBUGGING LOG
+
+To enable the debug log level, the `configure` script requires the
+`--with-debug` option:
+
+    ./configure --with-debug ...
+
+and then set the debug level of the `error_log`:
+
+    error_log /path/to/log debug;
+
+It is also possible to enable the debugging for a specific IP address,
+for example:
+
+    events {
+        debug_connection 127.0.0.1;
+    }
+
+## FILES 
+
+ `/etc/nginx` Nginx configuration directory.
+
+## EXIT STATUS
+     
+  Exit status is 0 on success, or 1 on failure.
+  
+## COPYRIGHT
+
+Nginx is Copyright (C) 2002-2011 Igor Sysoev under the terms of a BSD license.
+
+## SEE ALSO
+
+thttpd(8), apache2(8), lighttpd(8), openssl(1) and the online
+documentation [http://nginx.org/](http://nginx.org) and [http://sysoev.ru/nginx](http://sysoev.ru/nginx).
+
+For questions and technical support, please refer to [http://nginx.org/en/support.html](http://nginx.org/en/support.html).
+
+## AVAILABILITY
+
+The latest version of nginx is available at the svn repository for
+this project is at: [svn://svn.nginx.org/nginx](svn://svn.nginx.org/nginx).
+
+## AUTHOR
+
+Nginx is authored by Igor Sysoev \<igor@sysoev.ru\>.
+ 
+Manual page written by Antonio P. P. Almeida \<appa@perusio.net\>
+based on the manual page written by Sergey A. Osokin
+\<osa@FreeBSD.org.ru\> that is distributed with the Nginx source.
