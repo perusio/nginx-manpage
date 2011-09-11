@@ -29,10 +29,10 @@ low resource consumption.
   `-s signal` Send a signal to the master process. The signal can be
   one of: `stop`, `quit`, `reopen`, `reload`.  The following table shows the corresponding system signals.
 
-                    + `stop`    SIGTERM
-                    + `quit`    SIGQUIT
-                    + `reopen`  SIGUSR1
-                    + `reload`  SIGHUP
+   + `stop`    SIGTERM
+   + `quit`    SIGQUIT
+   + `reopen`  SIGUSR1
+   + `reload`  SIGHUP
 
   `-t` Don't run, just test the configuration file.  The nginx checks
   configuration for correct syntax and then tries to open files
